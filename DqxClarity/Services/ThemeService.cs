@@ -20,12 +20,13 @@ public static class ThemeService
         ["mereade"]  = new() { ["AppBg"]="#fff5ed",["AppSurface"]="#fff9f5",["AppSurface2"]="#ffe8d8",["AppBorder"]="#f0c8a8",["AppText"]="#2a1008",["AppMuted"]="#8a5830",["AppAccent"]="#d06820",["AppSuccess"]="#2a7a3a",["AppDanger"]="#c03030" },
         ["seraphi"]  = new() { ["AppBg"]="#fdf8e0",["AppSurface"]="#fffcf0",["AppSurface2"]="#f8edbc",["AppBorder"]="#e0cc70",["AppText"]="#1a1600",["AppMuted"]="#b07028",["AppAccent"]="#3a6abf",["AppSuccess"]="#2a7a3a",["AppDanger"]="#c04040" },
         ["yuliza"]   = new() { ["AppBg"]="#edf2fa",["AppSurface"]="#f5f8ff",["AppSurface2"]="#dce5f5",["AppBorder"]="#b8c8e8",["AppText"]="#081030",["AppMuted"]="#3a5080",["AppAccent"]="#2854c8",["AppSuccess"]="#2a7a3a",["AppDanger"]="#c04040" },
+        ["azuri"]    = new() { ["AppBg"]="#79091f",["AppSurface"]="#79091f",["AppSurface2"]="#402b2f",["AppBorder"]="#140520",["AppText"]="#ecd8f8",["AppMuted"]="#7848a8",["AppAccent"]="#2aac58",["AppSuccess"]="#4caf82",["AppDanger"]="#c03020" },
     };
 
     public static readonly (string Id, string Label)[] DarkThemes =
     [
         ("rosie", "Rosie"), ("asbal", "Asbal"), ("duston", "Duston"),
-        ("fostail", "Fostail"), ("lushenda", "Lushenda"),
+        ("fostail", "Fostail"), ("lushenda", "Lushenda"), ("azuri", "Azuri"),
     ];
 
     public static readonly (string Id, string Label)[] LightThemes =
