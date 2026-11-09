@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\vorti\Documents\GitHub\dqxclarity\launcher\native\LocaleHook.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\vorti\Documents\GitHub\dqxclarity\launcher\native\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4BA49CEE-848C-3E68-A8E5-CAA5C7132E48}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

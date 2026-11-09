@@ -1,0 +1,10 @@
+^C:\USERS\VORTI\DOCUMENTS\GITHUB\DQXCLARITY\LAUNCHER\NATIVE\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/vorti/Documents/GitHub/dqxclarity/launcher/native -BC:/Users/vorti/Documents/GitHub/dqxclarity/launcher/native/build --check-stamp-file C:/Users/vorti/Documents/GitHub/dqxclarity/launcher/native/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

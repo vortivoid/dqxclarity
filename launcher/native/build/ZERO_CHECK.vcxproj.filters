@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\vorti\Documents\GitHub\dqxclarity\launcher\native\build\CMakeFiles\efb963d94da05e3949bcf2abbacb91f1\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{82AA116B-F47D-3ACD-8532-FC11F134D44D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
