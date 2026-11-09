@@ -1,11 +1,17 @@
 using Avalonia;
 using Avalonia.Media;
 using Avalonia.Styling;
+using System.Text.Json;
 
 namespace DqxClarity.Services;
 
 public static class ThemeService
 {
+    static ThemeService()
+    {
+        LoadCustomThemes();
+    }
+
     private static readonly Dictionary<string, Dictionary<string, string>> Themes = new()
     {
         ["rosie"]    = new() { ["AppBg"]="#060d0b",["AppSurface"]="#0c1814",["AppSurface2"]="#142018",["AppBorder"]="#203828",["AppText"]="#c8e8de",["AppMuted"]="#508870",["AppAccent"]="#18b090",["AppSuccess"]="#4caf82",["AppDanger"]="#e05c6a" },
@@ -20,20 +26,72 @@ public static class ThemeService
         ["mereade"]  = new() { ["AppBg"]="#fff5ed",["AppSurface"]="#fff9f5",["AppSurface2"]="#ffe8d8",["AppBorder"]="#f0c8a8",["AppText"]="#2a1008",["AppMuted"]="#8a5830",["AppAccent"]="#d06820",["AppSuccess"]="#2a7a3a",["AppDanger"]="#c03030" },
         ["seraphi"]  = new() { ["AppBg"]="#fdf8e0",["AppSurface"]="#fffcf0",["AppSurface2"]="#f8edbc",["AppBorder"]="#e0cc70",["AppText"]="#1a1600",["AppMuted"]="#b07028",["AppAccent"]="#3a6abf",["AppSuccess"]="#2a7a3a",["AppDanger"]="#c04040" },
         ["yuliza"]   = new() { ["AppBg"]="#edf2fa",["AppSurface"]="#f5f8ff",["AppSurface2"]="#dce5f5",["AppBorder"]="#b8c8e8",["AppText"]="#081030",["AppMuted"]="#3a5080",["AppAccent"]="#2854c8",["AppSuccess"]="#2a7a3a",["AppDanger"]="#c04040" },
-        ["azuri"]    = new() { ["AppBg"]="#79091f",["AppSurface"]="#79091f",["AppSurface2"]="#402b2f",["AppBorder"]="#140520",["AppText"]="#ecd8f8",["AppMuted"]="#7848a8",["AppAccent"]="#2aac58",["AppSuccess"]="#4caf82",["AppDanger"]="#c03020" },
     };
 
-    public static readonly (string Id, string Label)[] DarkThemes =
+    public static (string Id, string Label)[] DarkThemes =
     [
         ("rosie", "Rosie"), ("asbal", "Asbal"), ("duston", "Duston"),
-        ("fostail", "Fostail"), ("lushenda", "Lushenda"), ("azuri", "Azuri"),
+        ("fostail", "Fostail"), ("lushenda", "Lushenda"),
     ];
 
-    public static readonly (string Id, string Label)[] LightThemes =
+    public static (string Id, string Label)[] LightThemes =
     [
         ("anlucia","Anlucia"),("estella","Estella"),("kyururu","Kyururu"),
         ("maille","Maille"),("mereade","Mereade"),("seraphi","Seraphi"),("yuliza","Yuliza"),
     ];
+
+    private class Theme
+    {
+        public string ThemeName {get; set;} = "";
+        public bool DarkTheme {get; set;} = false;
+        public string AppBG {get; set;} = "";
+        public string AppSurface {get; set;} = "";
+        public string AppSurface2 {get; set;} = "";
+        public string AppBorder {get; set;} = "";
+        public string AppText {get; set;} = "";
+        public string AppMuted {get; set;} = "";
+        public string AppAccent {get; set;} = "";
+        public string AppSuccess {get; set;} = "";
+        public string AppDanger {get; set;} = "";
+    }
+
+    public static void LoadCustomThemes()
+    {
+        string[] fileNames = Directory.GetFiles("themes", "*.json");
+        foreach(string fileName in fileNames)
+        {
+            string jsonString = File.ReadAllText(fileName);
+            Theme? newTheme = JsonSerializer.Deserialize<Theme>(jsonString);
+            if(newTheme == null)
+            {
+                continue;
+            }
+
+            Themes[newTheme.ThemeName.ToLower()] = new Dictionary<string, string>
+            {
+                ["AppBg"] = newTheme.AppBG,
+                ["AppSurface"] = newTheme.AppSurface,
+                ["AppSurface2"] = newTheme.AppSurface2,
+                ["AppBorder"] = newTheme.AppBorder,
+                ["AppText"] = newTheme.AppText,
+                ["AppMuted"] = newTheme.AppMuted,
+                ["AppAccent"] = newTheme.AppAccent,
+                ["AppSuccess"] = newTheme.AppSuccess,
+                ["AppDanger"] = newTheme.AppDanger
+            };
+
+            if(newTheme.DarkTheme)
+            {
+                var newDarkThemes = DarkThemes.Append((newTheme.ThemeName.ToLower(), newTheme.ThemeName));
+                DarkThemes = ((string Id, string Label)[])newDarkThemes;
+            }
+            else
+            {
+               var newLightThemes = LightThemes.Append((newTheme.ThemeName.ToLower(), newTheme.ThemeName));
+               LightThemes = ((string Id, string Label)[])newLightThemes;
+            }
+        }
+    }
 
     public static string GetCharacterImageUri(string name)
     {
